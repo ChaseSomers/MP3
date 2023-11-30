@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Model Selection</title>
+    <link rel="stylesheet" type="text/css" href="static/css/styles.css"> <!-- Add the correct path to your CSS file -->
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Welcome to the Model Selection Page</h1>
+        </div>
+
+        <!-- Instruction for file types in red -->
+        <p style="color: red;">Please only attach png, jpg, or jpeg files.</p>
+
+        <form id="modelForm" method="POST" enctype="multipart/form-data">
+            <label for="selected_model">Select a Model:</label>
+            <select name="selected_model" id="selected_model">
+                <option value="">Choose a Model</option> <!-- Changed value to empty -->
+                <option value="ViT">ViT Model</option>
+                <option value="YOLO">YOLO Model</option>
+            </select>
+            <br><br>
+            <label for="image">Upload an Image:</label>
+            <input type="file" id="image" name="image" accept=".jpg, .jpeg, .png">
+            <br><br>
+            <input type="submit" value="Submit">
+        </form>
+
+        <div class="explanation-container">
+            <h3>Model Explanation:</h3>
+            <div class="explanation">
+                <p id="model_explanation"></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("modelForm").addEventListener("submit", function(event) {
+            var selectedModel = document.getElementById("selected_model").value;
+            if (selectedModel === "") {
+                alert("Please select a model.");
+                event.preventDefault(); // Prevent form submission
+            }
+        });
+
+        document.getElementById("selected_model").addEventListener("change", function() {
+            var selectedModel = this.value;
+
+            if (selectedModel === 'YOLO') {
+                document.getElementById("model_explanation").innerText = "YOLO (You Only Look Once) is an object detection algorithm that can detect and localize objects within images.";
+                document.getElementById("modelForm").action = "/predict_yolo"; // Change form action for YOLO
+            } else if (selectedModel === 'ViT') {
+                document.getElementById("model_explanation").innerText = "ViT (Vision Transformer) is an architecture that uses transformer networks for image classification.";
+                document.getElementById("modelForm").action = "/predict_vit"; // Change form action for ViT
+            } else {
+                document.getElementById("model_explanation").innerText = "Please select a model to see its explanation.";
+            }
+        });
+
+        // Trigger the change event on page load to set the default text
+        document.getElementById("selected_model").dispatchEvent(new Event('change'));
+    </script>
+</body>
+<footer class="site-footer">
+    <p>&copy; Mini Project Three: Created and Tested By Chase Somers</p>
+</footer>
+</html>

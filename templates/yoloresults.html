@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Yolo Prediction Results</title>
+    <link rel="stylesheet" type="text/css" href="static/css/styles.css">
+</head>
+
+<body>
+    <div class="new-navbar">
+        <ul>
+            <li><a href="/">Home</a></li>
+        </ul>
+    </div>
+    <div class="new-main-content">
+        <h1>Prediction of Image:</h1>
+        {% if image_path %}
+            <img src="{{ '/static/images/results_0.png' }}" alt="Uploaded Image">
+        {% else %}
+            <p>No image available</p>
+        {% endif %}
+    </div>
+</body>
+<footer class="site-footer">
+    <p>&copy; Mini Project Three: Created and Tested By Chase Somers</p>
+</footer>
+
+</html>
+
+
