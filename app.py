@@ -63,4 +63,4 @@ def Yolo_Model():
 
     return render_template('yoloresults.html')  # Redirect to upload page if not POST request
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False, port =5001)
